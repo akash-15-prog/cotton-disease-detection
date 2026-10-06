@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        CottonGuard AI | Cotton Disease Detection
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+          rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+    <!-- Animated background -->
+
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    🌿
+                </div>
+
+                <div>
+
+                    <div class="brand-name">
+                        Cotton<span>Guard</span>
+                    </div>
+
+                    <div class="brand-subtitle">
+                        AI CROP INTELLIGENCE
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="model-status">
+
+                <span class="status-dot"></span>
+
+                <span>
+                    CNN MODEL ACTIVE
+                </span>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="ai-badge">
+
+                <span>✦</span>
+
+                AI-POWERED AGRICULTURE
+
+            </div>
+
+
+            <h1>
+
+                Protect Your
+                <span>Cotton Crop</span>
+                With AI.
+
+            </h1>
+
+
+            <p class="hero-text">
+
+                Upload a cotton leaf image and let our
+                Convolutional Neural Network analyze it
+                for early disease detection.
+
+            </p>
+
+
+            <div class="hero-stats">
+
+                <div class="hero-stat">
+
+                    <strong>4</strong>
+
+                    <span>
+                        Disease Classes
+                    </span>
+
+                </div>
+
+
+                <div class="stat-line"></div>
+
+
+                <div class="hero-stat">
+
+                    <strong>CNN</strong>
+
+                    <span>
+                        Deep Learning
+                    </span>
+
+                </div>
+
+
+                <div class="stat-line"></div>
+
+
+                <div class="hero-stat">
+
+                    <strong>AI</strong>
+
+                    <span>
+                        Image Analysis
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN APPLICATION -->
+
+    <main class="main-container">
+
+
+        <!-- UPLOAD CARD -->
+
+        <section class="upload-card">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="small-label">
+                        STEP 01
+                    </div>
+
+                    <h2>
+                        Upload Leaf Image
+                    </h2>
+
+                    <p>
+                        Choose a clear image of a cotton leaf
+                        for analysis.
+                    </p>
+
+                </div>
+
+                <div class="scan-icon">
+                    ⌁
+                </div>
+
+            </div>
+
+
+            <!-- DROP ZONE -->
+
+            <div class="drop-zone"
+                 id="dropZone">
+
+
+                <div class="upload-content"
+                     id="uploadContent">
+
+                    <div class="upload-icon">
+
+                        <span>
+                            ↑
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Drop your leaf image here
+                    </h3>
+
+
+                    <p>
+                        or click to browse from your computer
+                    </p>
+
+
+                    <div class="file-types">
+
+                        JPG
+                        <span>•</span>
+                        JPEG
+                        <span>•</span>
+                        PNG
+                        <span>•</span>
+                        WEBP
+
+                    </div>
+
+
+                    <button class="browse-button"
+                            type="button"
+                            id="browseButton">
+
+                        Choose Image
+
+                    </button>
+
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept=".jpg,.jpeg,.png,.webp"
+                        hidden
+                    >
+
+                </div>
+
+
+                <!-- IMAGE PREVIEW -->
+
+                <div class="preview-container"
+                     id="previewContainer">
+
+                    <img
+                        id="preview"
+                        alt="Selected cotton leaf"
+                    >
+
+
+                    <div class="preview-overlay">
+
+                        <span>
+                            IMAGE READY
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="remove-image"
+                        id="removeImage"
+                        type="button">
+
+                        ×
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- FILE INFO -->
+
+            <div class="file-info"
+                 id="fileInfo">
+
+                <div class="file-info-icon">
+                    ◉
+                </div>
+
+                <div>
+
+                    <strong id="fileName">
+                        Image selected
+                    </strong>
+
+                    <span id="fileSize">
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTION BUTTON -->
+
+            <button
+                class="analyze-button"
+                id="predictButton"
+                type="button">
+
+                <span class="button-icon">
+                    ✦
+                </span>
+
+                Analyze Leaf With AI
+
+                <span class="button-arrow">
+                    →
+                </span>
+
+            </button>
+
+
+            <!-- LOADING -->
+
+            <div class="loading-box"
+                 id="loading">
+
+                <div class="scanner">
+
+                    <div class="scanner-image">
+                        🌿
+                    </div>
+
+                    <div class="scan-line"></div>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        AI is analyzing the leaf...
+                    </strong>
+
+                    <p>
+                        CNN image classification in progress
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULTS -->
+
+        <section class="result-section"
+                 id="result">
+
+
+            <div class="result-header">
+
+                <div>
+
+                    <div class="small-label">
+                        STEP 02 · AI ANALYSIS COMPLETE
+                    </div>
+
+                    <h2>
+                        Detection Results
+                    </h2>
+
+                </div>
+
+                <div class="success-badge">
+                    ✓ ANALYSIS COMPLETE
+                </div>
+
+            </div>
+
+
+            <div class="result-grid">
+
+
+                <!-- MAIN RESULT -->
+
+                <div class="prediction-card">
+
+
+                    <div class="prediction-top">
+
+                        <div class="leaf-result-icon">
+                            🌿
+                        </div>
+
+                        <div>
+
+                            <span class="result-label">
+                                DETECTED CONDITION
+                            </span>
+
+                            <h3 id="prediction">
+                                —
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="confidence-section">
+
+                        <div class="confidence-header">
+
+                            <span>
+                                AI CONFIDENCE
+                            </span>
+
+                            <strong id="confidence">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="confidence-track">
+
+                            <div
+                                class="confidence-fill"
+                                id="confidenceFill">
+                            </div>
+
+                        </div>
+
+
+                        <p id="confidenceText">
+                            The model's confidence in this prediction.
+                        </p>
+
+                    </div>
+
+
+                    <div class="prediction-message"
+                         id="predictionMessage">
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- PROBABILITIES -->
+
+                <div class="probability-card">
+
+                    <div class="card-title-row">
+
+                        <div>
+
+                            <span class="result-label">
+                                MODEL OUTPUT
+                            </span>
+
+                            <h3>
+                                Class Probabilities
+                            </h3>
+
+                        </div>
+
+                        <div class="chart-icon">
+                            ◒
+                        </div>
+
+                    </div>
+
+
+                    <div id="probabilityList">
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- RESET -->
+
+            <button
+                class="new-analysis"
+                id="newAnalysis"
+                type="button">
+
+                ↻ Analyze Another Leaf
+
+            </button>
+
+
+        </section>
+
+
+        <!-- HOW IT WORKS -->
+
+        <section class="how-section">
+
+            <div class="section-center">
+
+                <div class="small-label">
+                    HOW IT WORKS
+                </div>
+
+                <h2>
+                    From Leaf to Insight
+                </h2>
+
+                <p>
+                    A simple three-step AI workflow
+                    transforms an image into an actionable
+                    disease prediction.
+                </p>
+
+            </div>
+
+
+            <div class="workflow">
+
+
+                <div class="workflow-card">
+
+                    <div class="workflow-number">
+                        01
+                    </div>
+
+                    <div class="workflow-icon">
+                        📷
+                    </div>
+
+                    <h3>
+                        Upload
+                    </h3>
+
+                    <p>
+                        Provide a clear image of the
+                        cotton leaf.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-connector">
+                    →
+                </div>
+
+
+                <div class="workflow-card">
+
+                    <div class="workflow-number">
+                        02
+                    </div>
+
+                    <div class="workflow-icon">
+                        🧠
+                    </div>
+
+                    <h3>
+                        Analyze
+                    </h3>
+
+                    <p>
+                        Our trained CNN analyzes visual
+                        disease patterns.
+                    </p>
+
+                </div>
+
+
+                <div class="workflow-connector">
+                    →
+                </div>
+
+
+                <div class="workflow-card">
+
+                    <div class="workflow-number">
+                        03
+                    </div>
+
+                    <div class="workflow-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        Predict
+                    </h3>
+
+                    <p>
+                        Receive the predicted condition
+                        and confidence score.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- SUPPORTED CONDITIONS -->
+
+        <section class="conditions-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <div class="small-label">
+                        MODEL KNOWLEDGE
+                    </div>
+
+                    <h2>
+                        Supported Conditions
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="condition-grid">
+
+
+                <div class="condition-card">
+
+                    <div class="condition-icon">
+                        🦠
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Bacterial Blight
+                        </h3>
+
+                        <p>
+                            Bacterial disease affecting
+                            cotton leaves.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="condition-card">
+
+                    <div class="condition-icon">
+                        🍂
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Fussarium Wilt
+                        </h3>
+
+                        <p>
+                            Wilt disease associated with
+                            fungal infection.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="condition-card">
+
+                    <div class="condition-icon">
+                        🧬
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Curl Virus
+                        </h3>
+
+                        <p>
+                            Viral condition causing leaf
+                            curling and distortion.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="condition-card healthy-card">
+
+                    <div class="condition-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Healthy
+                        </h3>
+
+                        <p>
+                            Leaf appears free from the
+                            trained disease classes.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+
+                🌿 <strong>
+                    CottonGuard AI
+                </strong>
+
+            </div>
+
+            <p>
+                Automated Cotton Leaf Disease Detection
+                using Convolutional Neural Networks
+            </p>
+
+            <span>
+                B.Tech · AI/ML Project
+            </span>
+
+        </div>
+
+    </footer>
+
+
+    <script
+        src="{{ url_for('static', filename='js/script.js') }}">
+    </script>
+
+
+</body>
+
+</html>
